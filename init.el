@@ -100,6 +100,41 @@
 (setq use-package-always-pin "melpa-stable")
 
 
+;;;; APPEARANCE
+
+;; Load Tomorrow Theme...
+(use-package color-theme-tomorrow
+  :load-path "~/.emacs.d/themes"
+  :config
+  (if (display-graphic-p)
+    (load-theme 'tomorrow-night t)             ;; ...for GUI
+    (load-theme 'tomorrow-night-eighties t)))  ;; ...for CMD
+
+
+;; Change mode-line theme to that from Spacemacs
+(use-package spaceline-config
+  :if window-system
+  :ensure spaceline
+  :config
+  (spaceline-emacs-theme)
+  (setq ns-use-srgb-colorspace nil)
+  (setq powerline-height 20)
+  (setq powerline-default-separator 'wave)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (set-face-attribute 
+   'spaceline-evil-normal nil :background "#F181C0" :foreground "black")
+  (set-face-attribute 
+   'spaceline-evil-insert nil :background "#FFBC74" :foreground "black")
+  (set-face-attribute 
+   'spaceline-evil-visual nil :background "#86CBD3" :foreground "black")
+  (spaceline-compile)
+)
+
+
+;; Change default font to bigger one
+(set-default-font "Hack 14")
+
+
 ;;;; EMACS LISP
 
 ;; Enable navigation to sections starting with ";;;;" through imenu
