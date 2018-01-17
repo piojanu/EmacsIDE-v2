@@ -1,0 +1,31 @@
+# Ignore dirs
+.python-environments/
+auto-save-list/
+auto-saves/
+backups/
+elpa/
+irony/
+semanticdb/
+url/
+
+# Ignore files
+projectile-bookmarks.eld
+projectile.cache
+session.*
+bookmarks
+recentf
+.#recentf
+network-security.data
+*.swp
+
+# Compiled
+*.elc
+
+# Packaging
+.cask
+
+# Backup files
+*~
+
+# Undo-tree save-files
+*.~undo-tree
