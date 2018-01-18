@@ -29,6 +29,16 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 
+;; Auto pair brackets
+(electric-pair-mode 1)
+
+;; Make electric-pair-mode work on more brackets
+(setq electric-pair-pairs '(
+  (?\" . ?\")
+  (?\{ . ?\})
+))
+
+
 ;; Change default font to bigger one
 (set-default-font "Hack 14")
 
