@@ -213,6 +213,37 @@
 )
 
 
+;; Install Ivy, minibuffer completion
+(use-package counsel ;; it'll install ivy and swiper as dependencies
+  :bind
+  ("C-c C-r" . ivy-resume)
+  ("C-s" . swiper)
+  ("C-c s s" . counsel-ag)
+  ("C-c s g" . counsel-grep)
+  ("C-c i" . counsel-imenu)
+  ("C-c y" . counsel-yank-pop)
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq enable-recursive-minibuffers t)
+  (counsel-mode)
+
+  ;; Make tab key do indent first then completion
+  (setq-default tab-always-indent 'complete)
+  
+  ;; Get projectile integration
+  (use-package counsel-projectile
+    :after projectile
+    :config
+    (counsel-projectile-mode)
+    :diminish counsel-projectile-mode
+  )
+  :diminish (ivy-mode counsel-mode)
+  :demand
+)
+
+
 ;; Install Projectile
 (use-package projectile
   :diminish projectile-mode
