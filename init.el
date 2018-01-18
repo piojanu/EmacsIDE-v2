@@ -29,6 +29,14 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 
+;; Highlight lines that exceed 80 characters
+(require 'whitespace)
+(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
+
+
 ;; Auto pair brackets
 (electric-pair-mode 1)
 
