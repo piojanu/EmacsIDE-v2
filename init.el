@@ -135,7 +135,7 @@
   :if window-system
   :ensure spaceline
   :config
-  (spaceline-emacs-theme)
+  (spaceline-spacemacs-theme)
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-height 20)
   (setq powerline-default-separator 'wave)
@@ -148,6 +148,33 @@
    'spaceline-evil-visual nil :background "#86CBD3" :foreground "black")
   (spaceline-compile)
 )
+
+
+;;;; UTILITIES
+
+;; Install Evil
+(use-package evil
+  :bind
+  (:map evil-insert-state-map
+    ;; Leave insert-state after save
+    ("C-x C-s" . (lambda () (interactive) (save-buffer) (evil-normal-state))))
+  (:map evil-motion-state-map
+    ("C-u" . evil-scroll-up))
+  :config
+  ;; Remove all keybindings from insert-state keymap, so I can use emacs ones
+  (setcdr evil-insert-state-map nil)
+  ;; But [escape] should switch back to normal state
+  (define-key evil-insert-state-map [escape] 'evil-normal-state)
+  (evil-mode 1)
+  :diminish undo-tree-mode
+  :demand
+)
+
+
+;; Install Evil tutor
+(use-package evil-tutor
+  :after evil
+  :commands evil-tutor-start)
 
 
 ;;;; CUSTOM
