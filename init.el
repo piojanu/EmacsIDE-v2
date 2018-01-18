@@ -213,6 +213,15 @@
 )
 
 
+;; Install which-key, propose keybind after entered prefix
+(use-package which-key
+  :after evil ;; for integration with Evil
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5)
+)
+
+
 ;;;; CUSTOM
 
 (custom-set-variables
