@@ -128,6 +128,9 @@
 ;; if not explicitly pointed differently (by ":pin" keyword)
 (setq use-package-always-pin "melpa-stable")
 
+;; Add diminish package early on
+(use-package diminish)
+
 
 ;;;; APPEARANCE
 
@@ -198,7 +201,16 @@
 ;; Install Evil tutor
 (use-package evil-tutor
   :after evil
-  :commands evil-tutor-start)
+  :commands evil-tutor-start
+)
+
+
+;; Install Projectile
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (projectile-global-mode t)
+)
 
 
 ;;;; CUSTOM
