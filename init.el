@@ -187,6 +187,26 @@
 
 ;;;; UTILITIES
 
+;; Install ace-window
+(use-package ace-window
+  :commands ace-window
+  :bind
+  ("C-x o" . ace-window)
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+
+
+;; Install Avy - jumping to visible text using a char-based decision tree
+(use-package avy
+  :commands
+  (avy-goto-char-2 avy-goto-char-timer ivy-avy)
+  :bind
+  ("C-'" . avy-goto-char-2)
+  ("C-\"" . avy-goto-char-timer)
+)
+
+
 ;; Install Evil
 (use-package evil
   :bind
