@@ -185,6 +185,21 @@
 )
 
 
+;;;; MARKDOWN
+
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+	 ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown")
+  :config
+  (custom-set-variables '(markdown-command "/usr/local/bin/pandoc"))
+  (setq markdown-fontify-code-blocks-natively t)
+)
+
+
 ;;;; UTILITIES
 
 ;; Install ace-window
