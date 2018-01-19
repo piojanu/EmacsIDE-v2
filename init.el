@@ -207,6 +207,17 @@
 )
 
 
+;; Drag Stuff - so you can move around lines, regions, etc.
+(use-package drag-stuff
+  :config
+  ;; Enable drag-stuff everywhere
+  (drag-stuff-global-mode t)
+
+  ;; Apply default key bindings
+  (drag-stuff-define-keys)
+)
+
+
 ;; Install Evil
 (use-package evil
   :bind
