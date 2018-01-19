@@ -252,6 +252,15 @@
 )
 
 
+;; Intall expand-region, for selection region by semantic units
+(use-package expand-region
+  :commands
+  er/expand-region
+  :bind
+  ("C-@" . er/expand-region)
+)
+
+
 ;; Install Ivy, minibuffer completion
 (use-package counsel ;; it'll install ivy and swiper as dependencies
   :bind
