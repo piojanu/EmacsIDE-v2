@@ -329,6 +329,16 @@
 )
 
 
+;; Install Stickyfunc Enhance
+(use-package stickyfunc-enhance
+  :pin melpa
+  :hook (prog-mode . semantic-mode)
+  :defer t
+  :init
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+)
+
+
 ;; Install which-key, propose keybind after entered prefix
 (use-package which-key
   :after evil ;; for integration with Evil
