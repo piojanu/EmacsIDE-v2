@@ -2,6 +2,7 @@
 .python-environments/
 auto-save-list/
 auto-saves/
+anaconda-mode/
 backups/
 elpa/
 irony/

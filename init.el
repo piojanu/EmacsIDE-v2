@@ -29,9 +29,9 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 
-;; Highlight lines that exceed 80 characters
+;; Highlight lines that exceed 100 characters
 (require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-line-column 100) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
@@ -197,6 +197,27 @@
   :config
   (custom-set-variables '(markdown-command "/usr/local/bin/pandoc"))
   (setq markdown-fontify-code-blocks-natively t)
+)
+
+
+;;;; PYTHON
+
+(use-package anaconda-mode
+  :hook ((python-mode . anaconda-mode)
+	 (python-mode . anaconda-eldoc-mode))
+  :defer t
+  :bind (:map evil-normal-state-map
+	 ("M-." . anaconda-mode-find-definitions))
+  :config
+  ;; Virtualenv support in emacs
+  (use-package pyvenv
+    :commands pyvenv-workon
+    :init (defalias 'workon 'pyvenv-workon))
+
+  ;; Auto Python PEP8 formatting
+  (use-package py-autopep8
+    :hook (python-mode . py-autopep8-enable-on-save)
+    :config (setq py-autopep8-options '("--max-line-length=100")))
 )
 
 
@@ -367,7 +388,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (evil-magit yasnippet-snippets use-package))))
+ '(package-selected-packages
+   (quote
+    (py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
