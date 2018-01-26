@@ -350,6 +350,12 @@
 )
 
 
+;; Install Rainbow delimiters
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :defer t)
+
+
 ;; Install Stickyfunc Enhance
 (use-package stickyfunc-enhance
   :pin melpa
