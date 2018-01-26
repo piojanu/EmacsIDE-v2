@@ -142,13 +142,14 @@
 
 ;;;; APPEARANCE
 
-;; Load Tomorrow Theme...
+;; Load Dracula/Tomorrow Theme...
 (use-package color-theme-tomorrow
   :load-path "~/.emacs.d/themes"
   :config
   (if (display-graphic-p)
-    (load-theme 'tomorrow-night t)             ;; ...for GUI
-    (load-theme 'tomorrow-night-eighties t)))  ;; ...for CMD
+    (load-theme 'dracula t)                   ;; ...for GUI
+    (load-theme 'tomorrow-night-eighties t))  ;; ...for CMD
+)
 
 
 ;; Change mode-line theme to that from Spacemacs
