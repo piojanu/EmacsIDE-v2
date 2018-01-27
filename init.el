@@ -1,5 +1,13 @@
 ;;; init.el --- PJ emacs configuration file
 
+;; Enable navigation to sections starting with ";;;;" through imenu
+(defun imenu-elisp-sections ()
+  (setq imenu-prev-index-position-function nil)
+  (add-to-list 'imenu-generic-expression '("Sections" "^;;;; \\(.+\\)$" 1) t))
+
+(add-hook 'emacs-lisp-mode-hook 'imenu-elisp-sections)
+
+
 ;;;; DEFAULTS - emacs basic configs
 
 ;; Turn off mouse interface early in startup to avoid momentary display
@@ -12,9 +20,17 @@
 (setq inhibit-startup-screen t)
 
 
+;; Make emacs frame maximized at startup
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+
 ;; Add line numbering
 (setq linum-format "%4d ");; \u2502 ")
 (add-hook 'prog-mode-hook 'linum-mode)
+
+
+;; Change default font to bigger one
+(set-default-font "Hack 14")
 
 
 ;; Shorten 'yes' and 'no' answers to one letter
@@ -38,7 +54,9 @@
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
 
 
-;; Turn on spell checking with flyspell(-prog)-mode
+;; Turn on spell checking...
+
+;; ...when in programming mode with flyspell-prog-mode
 (dolist (hook_prog_modes_list '(lisp-mode-hook
 		           emacs-lisp-mode-hook
 			   yaml-mode
@@ -50,6 +68,7 @@
 			   c-mode-common-hook))
 (add-hook hook_prog_modes_list 'flyspell-prog-mode))
 
+;; ...when in text mode with flyspell-mode
 (dolist (hook_modes_list '(text-mode-hook
 			   fundamental-mode-hook))
 (add-hook hook_modes_list 'flyspell-mode))
@@ -58,8 +77,8 @@
 (global-set-key (kbd "M-s") 'ispell-word)	    ;; Key-bind for word at cursor spell check.
 
 
-;; Make mac right cmd key work as meta key
-(cond ((string-equal system-type "darwin") ; Mac OS X
+;; Make mac cmd key work as meta key
+(cond ((string-equal system-type "darwin") ;; Mac OS X
   (progn
     (setq mac-option-key-is-meta nil)
     (setq mac-command-key-is-meta t)
@@ -129,20 +148,6 @@
    'spaceline-evil-visual nil :background "#86CBD3" :foreground "black")
   (spaceline-compile)
 )
-
-
-;; Change default font to bigger one
-(set-default-font "Hack 14")
-
-
-;;;; EMACS LISP
-
-;; Enable navigation to sections starting with ";;;;" through imenu
-(defun imenu-elisp-sections ()
-  (setq imenu-prev-index-position-function nil)
-  (add-to-list 'imenu-generic-expression '("Sections" "^;;;; \\(.+\\)$" 1) t))
-
-(add-hook 'emacs-lisp-mode-hook 'imenu-elisp-sections)
 
 
 ;;;; CUSTOM
