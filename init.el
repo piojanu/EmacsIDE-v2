@@ -112,6 +112,7 @@
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
   (when (< emacs-major-version 24)
@@ -198,6 +199,35 @@
   :config
   (custom-set-variables '(markdown-command "/usr/local/bin/pandoc"))
   (setq markdown-fontify-code-blocks-natively t)
+)
+
+
+;;;; Org-mode
+
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :config
+  ;; Set fold symbol to be arrow pointing right and then curving downwards
+  (setq org-ellipsis
+    (if (char-displayable-p ?\u2935) " \u2935"
+         'org-ellipsis))
+
+  ;; Code buffers configuration
+  (setq org-src-fontify-natively t)           ;; Highlight natively
+  (setq org-src-tab-acts-natively t)          ;; TAB acts natively to that language buffer
+  (setq org-src-window-setup 'current-window) ;; Use the current window for editing code snippets
+
+  ;; Save the clock history across Emacs sessions
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+  
+  ;; Allows to embed a TODO within text without treating it as an outline heading
+  (require 'org-inlinetask)
+
+  ;; Better (utf-8) Org bullets
+  (use-package org-bullets
+    :commands org-bullets-mode
+    :hook (org-mode . org-bullets-mode))
 )
 
 

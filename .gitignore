@@ -10,6 +10,7 @@ semanticdb/
 url/
 
 # Ignore files
+org-clock-save.el
 projectile-bookmarks.eld
 projectile.cache
 flycheck_init.el
