@@ -11,6 +11,7 @@ url/
 # Ignore files
 projectile-bookmarks.eld
 projectile.cache
+flycheck_init.el
 session.*
 bookmarks
 recentf

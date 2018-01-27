@@ -48,7 +48,7 @@
 
 
 ;; Change default font to bigger one
-(set-default-font "Hack 14")
+(set-frame-font "Hack 14")
 
 
 ;; Shorten 'yes' and 'no' answers to one letter
@@ -230,6 +230,7 @@
 
   ;; Apply default key bindings
   (drag-stuff-define-keys)
+  :diminish drag-stuff-mode
 )
 
 
@@ -273,6 +274,17 @@
   er/expand-region
   :bind
   ("C-@" . er/expand-region)
+)
+
+
+;; Install Flycheck, replacement for the older Flymake
+(use-package flycheck
+  :config
+  (global-flycheck-mode)
+
+  ;; Check after save
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)) 
+  :diminish flycheck-mode
 )
 
 
@@ -334,6 +346,7 @@
   (use-package yasnippet-snippets
     :pin melpa)
   (yas-reload-all)
+  :diminish yas-minor-mode
 )
 
 
