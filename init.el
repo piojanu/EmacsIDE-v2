@@ -285,12 +285,14 @@
   ("C-c s g" . counsel-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
+  ("C-x C-r" . counsel-recentf)
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq enable-recursive-minibuffers t)
   (counsel-mode)
+  (recentf-mode)
 
   ;; Make tab key do indent first then completion
   (setq-default tab-always-indent 'complete)
@@ -302,7 +304,7 @@
     (counsel-projectile-mode)
     :diminish counsel-projectile-mode
   )
-  :diminish (ivy-mode counsel-mode)
+  :diminish (ivy-mode counsel-mode recentf-mode)
   :demand
 )
 
