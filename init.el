@@ -137,8 +137,14 @@
 ;; if not explicitly pointed differently (by ":pin" keyword)
 (setq use-package-always-pin "melpa-stable")
 
-;; Add diminish package early on
-(use-package diminish)
+;; Add delight package early on
+(use-package delight
+  :pin gnu
+  :config
+  (delight 'flyspell-mode "" 'flyspell)
+  (delight 'whitespace-mode "" 'whitespace)
+  (delight 'auto-revert-mode "" 'autorevert)
+)
 
 
 ;;;; APPEARANCE
@@ -276,18 +282,19 @@
 
 ;; Drag Stuff - so you can move around lines, regions, etc.
 (use-package drag-stuff
+  :delight
   :config
   ;; Enable drag-stuff everywhere
   (drag-stuff-global-mode t)
 
   ;; Apply default key bindings
   (drag-stuff-define-keys)
-  :diminish drag-stuff-mode
 )
 
 
 ;; Install Evil
 (use-package evil
+  :delight undo-tree-mode
   :bind
   (:map evil-insert-state-map
     ;; Leave insert-state after save
@@ -300,7 +307,6 @@
   ;; But [escape] should switch back to normal state
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   (evil-mode 1)
-  :diminish undo-tree-mode
   :demand
 )
 
@@ -331,17 +337,18 @@
 
 ;; Install Flycheck, replacement for the older Flymake
 (use-package flycheck
+  :delight
   :config
   (global-flycheck-mode)
 
   ;; Check after save
   (setq flycheck-check-syntax-automatically '(mode-enabled save)) 
-  :diminish flycheck-mode
 )
 
 
 ;; Install Ivy, minibuffer completion
 (use-package counsel ;; it'll install ivy and swiper as dependencies
+  :delight (ivy-mode) (counsel-mode)
   :bind
   ("C-c C-r" . ivy-resume)
   ("C-s" . swiper)
@@ -363,19 +370,18 @@
   
   ;; Get projectile integration
   (use-package counsel-projectile
+    :delight
     :after projectile
     :config
     (counsel-projectile-mode)
-    :diminish counsel-projectile-mode
   )
-  :diminish (ivy-mode counsel-mode recentf-mode)
   :demand
 )
 
 
 ;; Install Projectile
 (use-package projectile
-  :diminish projectile-mode
+  :delight
   :config
   (projectile-global-mode t)
 )
@@ -383,12 +389,15 @@
 
 ;; Install Rainbow delimiters
 (use-package rainbow-delimiters
+  :delight
   :hook (prog-mode . rainbow-delimiters-mode)
-  :defer t)
+  :defer t
+)
 
 
 ;; Install Stickyfunc Enhance
 (use-package stickyfunc-enhance
+  :delight
   :pin melpa
   :hook (prog-mode . semantic-mode)
   :defer t
@@ -399,6 +408,7 @@
 
 ;; Install which-key, propose keybind after entered prefix
 (use-package which-key
+  :delight
   :after evil ;; for integration with Evil
   :config
   (which-key-mode)
@@ -408,13 +418,13 @@
 
 ;; Install yasnippet and yasnippet-snippets
 (use-package yasnippet
+  :delight yas-minor-mode
   :hook (prog-mode . yas-minor-mode)
   :defer t
   :config
   (use-package yasnippet-snippets
     :pin melpa)
   (yas-reload-all)
-  :diminish yas-minor-mode
 )
 
 
