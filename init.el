@@ -166,7 +166,8 @@
   :config
   (spaceline-spacemacs-theme)
   (setq ns-use-srgb-colorspace nil)
-  (setq powerline-height 20)
+  (cond ((string-equal system-type "darwin") ;; Mac OS X
+	 (progn (setq powerline-height 20))))
   (setq powerline-default-separator 'wave)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (set-face-attribute 
