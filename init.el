@@ -213,6 +213,7 @@
 
 (use-package org
   :mode ("\\.org\\'" . org-mode)
+  :bind ("C-c a" . org-agenda)
   :config
   ;; Set fold symbol to be arrow pointing right and then curving downwards
   (setq org-ellipsis
@@ -227,7 +228,11 @@
   ;; Save the clock history across Emacs sessions
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
-  
+
+  ;; Add workflow states
+  (setq org-todo-keywords
+	'((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
   ;; Allows to embed a TODO within text without treating it as an outline heading
   (require 'org-inlinetask)
 
@@ -436,6 +441,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Documents/Notes/SecondDay.org")))
  '(package-selected-packages
    (quote
     (py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
