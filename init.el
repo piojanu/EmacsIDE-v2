@@ -289,10 +289,8 @@
 ;; Drag Stuff - so you can move around lines, regions, etc.
 (use-package drag-stuff
   :delight
+  :hook (prog-mode . drag-stuff-mode)
   :config
-  ;; Enable drag-stuff everywhere
-  (drag-stuff-global-mode t)
-
   ;; Apply default key bindings
   (drag-stuff-define-keys)
 )
