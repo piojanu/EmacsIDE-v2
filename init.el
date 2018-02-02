@@ -29,6 +29,11 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 
+;; Set tab width
+(setq-default c-basic-offset 4)                  ;; Default is 2
+(setq-default c-indent-level 4)                  ;; Default is 2
+
+
 ;; Highlight lines that exceed 100 characters
 (require 'whitespace)
 (setq whitespace-line-column 100) ;; limit line length
@@ -188,6 +193,28 @@
   (set-face-attribute 
    'spaceline-evil-visual nil :background "#86CBD3" :foreground "black")
   (spaceline-compile)
+)
+
+
+;;;; C++
+(use-package irony
+  :hook ((c++-mode . irony-mode)
+	 (c-mode . irony-mode))
+  :defer t
+  :bind* (:map c++-mode-map
+	 ("C-M-i" . counsel-irony))
+  :config
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+  (use-package irony-eldoc
+    :delight eldoc-mode
+    :pin melpa
+    :hook (irony-mode . irony-eldoc))
+
+  (use-package flycheck-irony
+    :after flycheck
+    :hook (flycheck-mode . flycheck-irony-setup))
+  :delight abbrev-mode
 )
 
 
@@ -533,7 +560,7 @@
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (company-anaconda org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
+    (company-anaconda org flycheck-rtags ivy-rtags irony-eldoc py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
