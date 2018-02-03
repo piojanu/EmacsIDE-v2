@@ -246,6 +246,7 @@
 ;;;; PYTHON
 
 (use-package anaconda-mode
+  :delight eldoc-mode
   :hook ((python-mode . anaconda-mode)
 	 (python-mode . anaconda-eldoc-mode))
   :defer t
