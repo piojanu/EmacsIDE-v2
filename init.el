@@ -197,6 +197,12 @@
 
 
 ;;;; C++
+(use-package cmake-ide
+  :hook ((c++-mode . cmake-ide-setup)
+	 (c-mode . cmake-ide-setup))
+  :after rtags
+)
+
 (use-package irony
   :hook ((c++-mode . irony-mode)
 	 (c-mode . irony-mode))
@@ -215,6 +221,32 @@
     :after flycheck
     :hook (flycheck-mode . flycheck-irony-setup))
   :delight abbrev-mode
+)
+
+(use-package rtags
+  :commands (rtags-location-stack-back
+	     rtags-find-symbol-at-point
+	     rtags-find-references-at-point)
+  :bind (:map c-mode-base-map
+  	 ("M-*" . rtags-location-stack-back)
+  	 ("M-." . rtags-find-symbol-at-point)
+  	 ("M-r" . rtags-find-references-at-point)) 
+  :after evil
+  :config
+  (evil-define-key 'normal c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
+
+  (use-package ivy-rtags
+    :config
+    (setq rtags-display-result-backend 'ivy))
+
+  (use-package flycheck-rtags
+    :config
+    (defun my-flycheck-rtags-setup ()
+      (flycheck-select-checker 'rtags)
+      (setq-local flycheck-highlighting-mode nil)) ;; RTags creates more accurate overlays.
+    (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+    (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup))
+  :demand
 )
 
 
@@ -309,9 +341,10 @@
   :hook ((python-mode . anaconda-mode)
 	 (python-mode . anaconda-eldoc-mode))
   :defer t
-  :bind (:map evil-normal-state-map
-	 ("M-." . anaconda-mode-find-definitions))
+  :after evil
   :config
+  (evil-define-key 'normal python-mode-map (kbd "M-.") (function anaconda-mode-find-definitions))
+  
   ;; Anaconda backend for company completion
   (use-package company-anaconda
     :after company
