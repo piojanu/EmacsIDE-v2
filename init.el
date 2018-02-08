@@ -247,6 +247,10 @@
   (use-package org-bullets
     :commands org-bullets-mode
     :hook (org-mode . org-bullets-mode))
+
+  ;; JIRA backend for export engine
+  (use-package ox-jira
+    :load-path "~/.emacs.d/elisp")
 )
 
 
