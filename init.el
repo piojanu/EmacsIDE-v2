@@ -59,6 +59,10 @@
 (windmove-default-keybindings)
 
 
+;; Wrap at word boundaries
+(setq-default word-wrap t)
+
+
 ;; Set up backups and change backup files storage directory
 (setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
 (setq version-control t     ;; Use version numbers for backups.
@@ -228,6 +232,9 @@
   ;; Save the clock history across Emacs sessions
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
+
+  ;; Wrap lines
+  (add-hook 'org-mode-hook #'toggle-truncate-lines)
 
   ;; Add workflow states
   (setq org-todo-keywords
