@@ -218,6 +218,7 @@
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :bind ("C-c a" . org-agenda)
+  :bind* ("C-'" . avy-goto-char-2)
   :config
   ;; Set fold symbol to be arrow pointing right and then curving downwards
   (setq org-ellipsis
@@ -250,6 +251,10 @@
 
   ;; JIRA backend for export engine
   (use-package ox-jira
+    :load-path "~/.emacs.d/elisp")
+  
+  ;; Markdown backend for export engine
+  (use-package ox-md
     :load-path "~/.emacs.d/elisp")
 )
 
@@ -451,10 +456,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Documents/Notes/SecondDay.org")))
+ '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
+    (org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
