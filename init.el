@@ -371,7 +371,7 @@
 (use-package counsel ;; it'll install ivy and swiper as dependencies
   :delight (ivy-mode) (counsel-mode)
   :bind
-  ("C-c C-r" . ivy-resume)
+  ("C-c r" . ivy-resume)
   ("C-s" . swiper)
   ("C-c s s" . counsel-ag)
   ("C-c s g" . counsel-grep)
