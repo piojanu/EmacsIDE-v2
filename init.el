@@ -269,6 +269,11 @@
   :bind (:map evil-normal-state-map
 	 ("M-." . anaconda-mode-find-definitions))
   :config
+  ;; Anaconda backend for company completion
+  (use-package company-anaconda
+    :after company
+    :config (add-to-list 'company-backends 'company-anaconda))
+  
   ;; Virtualenv support in emacs
   (use-package pyvenv
     :commands pyvenv-workon
@@ -300,6 +305,41 @@
   :bind
   ("C-'" . avy-goto-char-2)
   ("C-\"" . avy-goto-char-timer)
+)
+
+
+;; Install Company
+(use-package company
+  :delight
+  :bind
+  (:map company-active-map
+    ("C-n" . company-select-next)
+    ("C-p" . company-select-previous))
+  :bind*
+  ("C-M-i" . company-complete)
+  :config
+  ;; Enable company globally
+  (global-company-mode)
+
+  ;; Customise company
+  (setq company-tooltip-limit 10)
+  (setq company-idle-delay 0.2)
+  (setq company-echo-delay 0)
+  (setq company-minimum-prefix-length 2)
+  (setq company-require-match nil)
+  (setq company-selection-wrap-around t)
+  (setq company-transformers '(company-sort-by-occurrence)) ;; Weight by frequency
+  (setq company-tooltip-flip-when-above t)
+  (setq company-tooltip-align-annotations t
+    ;; Easy navigation to candidates with M-<n>
+    company-show-numbers t)
+
+  ;; Use Company for completion
+  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
+
+  ;; Add backends globally
+  (add-to-list 'company-backends '(company-capf company-dabbrev company-files))
+  :demand
 )
 
 
@@ -459,7 +499,7 @@
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
+    (company-anaconda org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
