@@ -426,6 +426,13 @@
   (counsel-mode)
   (recentf-mode)
 
+  ;; Remove '^' from the beginning of input match
+  (setq ivy-initial-inputs-alist nil)
+
+  ;; Allow for input not in order
+  (setq ivy-re-builders-alist
+        '((t   . ivy--regex-ignore-order)))
+  
   ;; Make tab key do indent first then completion
   (setq-default tab-always-indent 'complete)
   
