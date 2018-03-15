@@ -207,10 +207,12 @@
   :hook ((c++-mode . irony-mode)
 	 (c-mode . irony-mode))
   :defer t
-  :bind* (:map c++-mode-map
-	 ("C-M-i" . counsel-irony))
   :config
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+  (use-package company-irony
+    :after company
+    :config (add-to-list 'company-backends 'company-irony))
 
   (use-package irony-eldoc
     :delight eldoc-mode
