@@ -337,8 +337,17 @@
   ;; Use Company for completion
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
 
+  ;; Disable company-dabbrev downcasing
+  (setq company-dabbrev-downcase nil)
+  
   ;; Add backends globally
-  (add-to-list 'company-backends '(company-capf company-dabbrev company-files))
+  (add-to-list 'company-backends '(company-dabbrev company-files))
+
+  ;; Add company-capf backend for elisp
+  (add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (set (make-local-variable 'company-backends)
+                 (list (cons 'company-capf '(company-backends))))))
   :demand
 )
 
@@ -432,9 +441,6 @@
   ;; Allow for input not in order
   (setq ivy-re-builders-alist
         '((t   . ivy--regex-ignore-order)))
-  
-  ;; Make tab key do indent first then completion
-  (setq-default tab-always-indent 'complete)
   
   ;; Get projectile integration
   (use-package counsel-projectile
