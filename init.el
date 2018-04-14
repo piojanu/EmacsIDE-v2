@@ -595,7 +595,8 @@
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (company-anaconda org flycheck-rtags ivy-rtags irony-eldoc py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
+    (company-anaconda org flycheck-rtags ivy-rtags irony-eldoc py-autopep8 pyvenv evil-magit yasnippet-snippets use-package)))
+ '(safe-local-variable-values (quote ((cmake-ide-build-dir . "./build/")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
