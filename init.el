@@ -286,7 +286,7 @@
   ;; Anaconda backend for company completion
   (use-package company-anaconda
     :after company
-    :config (add-to-list 'company-backends 'company-anaconda))
+    :config (add-to-list (make-local-variable 'company-backends) 'company-anaconda))
   
   ;; Virtualenv support in emacs
   (use-package pyvenv
@@ -354,14 +354,10 @@
   ;; Disable company-dabbrev downcasing
   (setq company-dabbrev-downcase nil)
   
-  ;; Add backends globally
-  (add-to-list 'company-backends '(company-dabbrev company-files))
+  ;; Set default backends globally
+  (setq company-backends
+	'(company-files company-keywords company-capf company-yasnippet :with company-dabbrev))
 
-  ;; Add company-capf backend for elisp
-  (add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends)
-                 (list (cons 'company-capf '(company-backends))))))
   :demand
 )
 
