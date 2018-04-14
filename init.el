@@ -358,6 +358,16 @@
   (setq company-backends
 	'(company-files company-keywords company-capf company-yasnippet :with company-dabbrev))
 
+  ;; Install company quickhelp
+  (use-package company-quickhelp
+    :bind (:map company-active-map
+	   ("C-c h" . company-quickhelp-manual-begin))
+    :config
+    ;; Enable globally
+    (company-quickhelp-mode)
+    ;; Don't automatically pop up help dialog
+    (setq company-quickhelp-delay nil)
+  )
   :demand
 )
 
