@@ -212,7 +212,7 @@
 
   (use-package company-irony
     :after company
-    :config (add-to-list 'company-backends 'company-irony))
+    :config (add-to-list (make-local-variable 'company-backends) 'company-irony))
 
   (use-package irony-eldoc
     :delight eldoc-mode
