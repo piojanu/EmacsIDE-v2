@@ -99,6 +99,11 @@
 (global-set-key (kbd "M-s") 'ispell-word)	    ;; Key-bind for word at cursor spell check.
 
 
+;; Turn on recentf
+(recentf-mode)
+(setq recentf-max-saved-items 250)
+
+
 ;; Make mac cmd key work as meta key
 (cond ((string-equal system-type "darwin") ;; Mac OS X
   (progn
@@ -442,7 +447,6 @@
   (setq ivy-count-format "(%d/%d) ")
   (setq enable-recursive-minibuffers t)
   (counsel-mode)
-  (recentf-mode)
 
   ;; Remove '^' from the beginning of input match
   (setq ivy-initial-inputs-alist nil)
