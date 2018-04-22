@@ -153,6 +153,8 @@
   (delight 'flyspell-mode "" 'flyspell)
   (delight 'whitespace-mode "" 'whitespace)
   (delight 'auto-revert-mode "" 'autorevert)
+  (delight 'abbrev-mode "" 'abbrev)
+  
 )
 
 
@@ -356,7 +358,7 @@
   
   ;; Set default backends globally
   (setq company-backends
-	'(company-files company-keywords company-capf company-yasnippet :with company-dabbrev))
+	'((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev)))
 
   ;; Install company quickhelp
   (use-package company-quickhelp
