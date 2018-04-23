@@ -203,6 +203,10 @@
   :after rtags
 )
 
+(use-package cuda-mode
+  :delight
+  :mode ("\\.cu\\'" . cuda-mode))
+
 (use-package irony
   :hook ((c++-mode . irony-mode)
 	 (c-mode . irony-mode))
