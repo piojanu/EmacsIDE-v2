@@ -203,6 +203,13 @@
   :after rtags
 )
 
+(use-package cmake-mode
+  :delight
+  :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
+	 ("\\.cmake\\'" . cmake-mode))
+  :after company
+  :config (add-to-list (make-local-variable 'company-backends) 'company-cmake))
+
 (use-package cuda-mode
   :delight
   :mode ("\\.cu\\'" . cuda-mode))
