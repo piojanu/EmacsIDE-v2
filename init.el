@@ -359,6 +359,21 @@
   ;; Enable company Tab and Go feature
   (company-tng-configure-default)
   
+  ;; Company and yasnippet integration
+  (defun company-yasnippet-or-completion ()
+    "Solve company yasnippet conflicts."
+    (interactive)
+    (let ((yas-fallback-behavior
+	   (apply 'company-complete-common nil)))
+      (yas-expand)))
+
+  (add-hook 'company-mode-hook
+   (lambda ()
+     (substitute-key-definition
+      'company-complete-common
+      'company-yasnippet-or-completion
+      company-active-map))) 
+
   ;; Set default backends globally
   (setq company-backends
 	'((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev)))
