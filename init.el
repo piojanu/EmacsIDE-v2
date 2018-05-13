@@ -356,6 +356,9 @@
   ;; Disable company-dabbrev downcasing
   (setq company-dabbrev-downcase nil)
   
+  ;; Enable company Tab and Go feature
+  (company-tng-configure-default)
+  
   ;; Set default backends globally
   (setq company-backends
 	'((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev)))
@@ -368,8 +371,7 @@
     ;; Enable globally
     (company-quickhelp-mode)
     ;; Don't automatically pop up help dialog
-    (setq company-quickhelp-delay nil)
-  )
+    (setq company-quickhelp-delay nil))
   :demand
 )
 
