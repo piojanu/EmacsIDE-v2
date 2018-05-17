@@ -47,10 +47,6 @@
 ))
 
 
-;; Change default font to bigger one
-(set-frame-font "Hack 14")
-
-
 ;; Shorten 'yes' and 'no' answers to one letter
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -538,6 +534,14 @@
     :pin melpa)
   (yas-reload-all)
 )
+
+
+;;;; USER CONFIG
+
+;; Load user configuration if available
+(if (file-readable-p "~/.user-locals.el")
+    (load "~/.user-locals.el")
+  nil)
 
 
 ;;;; CUSTOM
