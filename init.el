@@ -284,7 +284,8 @@
   ;; Anaconda backend for company completion
   (use-package company-anaconda
     :after company
-    :config (add-to-list (make-local-variable 'company-backends) 'company-anaconda))
+    :config (add-to-list (make-local-variable 'company-backends)
+	      '(company-anaconda company-yasnippet company-dabbrev)))
   
   ;; Virtualenv support in emacs
   (use-package pyvenv
@@ -372,7 +373,7 @@
 
   ;; Set default backends globally
   (setq company-backends
-	'((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev)))
+	'((company-files company-keywords company-capf company-yasnippet company-abbrev company-dabbrev)))
 
   ;; Install company quickhelp
   (use-package company-quickhelp
