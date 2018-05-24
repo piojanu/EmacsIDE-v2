@@ -187,6 +187,20 @@
 )
 
 
+;;; C
+
+;; CUDA support
+(use-package cuda-mode
+  :mode "\\.cu\\'"
+  :hook
+  (cuda-mode . (lambda () (run-hooks 'prog-mode-hook))) ;; Make cuda-mode a prog-mode
+  :config
+  (setq-default c-basic-offset 4
+                tab-width 4
+                indent-tabs-mode nil)
+)
+
+
 ;;;; GIT
 
 ;; Install Magit
