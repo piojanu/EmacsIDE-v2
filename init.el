@@ -371,10 +371,6 @@
       'company-yasnippet-or-completion
       company-active-map))) 
 
-  ;; Set default backends globally
-  (setq company-backends
-	'((company-files company-keywords company-capf company-yasnippet company-abbrev company-dabbrev)))
-
   ;; Install company quickhelp
   (use-package company-quickhelp
     :bind (:map company-active-map
