@@ -457,6 +457,8 @@
   :config
   (global-flycheck-mode)
 
+  ;; Disable error indication on fringe
+  (setq flycheck-indication-mode nil)
   ;; Check after save
   (setq flycheck-check-syntax-automatically '(mode-enabled save)) 
 )
