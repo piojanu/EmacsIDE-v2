@@ -298,8 +298,11 @@
   ;; Anaconda backend for company completion
   (use-package company-anaconda
     :after company
-    :config (add-to-list (make-local-variable 'company-backends)
-	      '(company-anaconda company-yasnippet company-dabbrev)))
+    :config
+    (add-hook 'anaconda-mode-hook (lambda ()
+	(add-to-list (make-local-variable 'company-backends)
+	   '(company-anaconda company-yasnippet company-files company-dabbrev))))
+  )
   
   ;; Virtualenv support in emacs
   (use-package pyvenv
