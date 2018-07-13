@@ -63,7 +63,7 @@
 (setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
 (setq version-control t     ;; Use version numbers for backups.
       kept-new-versions 7   ;; Number of newest versions to keep.
-      kept-old-versions 2   ;; Number of oldest versions to keep.
+      kept-old-versions 3   ;; Number of oldest versions to keep.
       delete-old-versions t ;; Don't ask to delete excess backup versions.
       backup-by-copying t)  ;; Copy all files, don't rename them.
 
@@ -97,7 +97,7 @@
 
 ;; Turn on recentf
 (recentf-mode)
-(setq recentf-max-saved-items 250)
+(setq recentf-max-saved-items 1000)
 
 
 ;; Make mac cmd key work as meta key
