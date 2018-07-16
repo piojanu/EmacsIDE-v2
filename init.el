@@ -290,11 +290,8 @@
 
 ;; Install dumb-jump - multi-language jump to definition and references
 (use-package dumb-jump
-  :bind (("M-." . dumb-jump-go)
-         ("M-*" . dumb-jump-back)
-         ("M-," . dumb-jump-quick-look))
-  :bind (:map evil-normal-state-map
-	 ("M-." . dumb-jump-go))
+  :bind (("M-," . dumb-jump-go)
+         ("M-*" . dumb-jump-back))
   :after ivy evil
   :config
   ;; Enable ivy support
@@ -303,6 +300,37 @@
   (setq dumb-jump-prefer-searcher 'ag)
   :demand
 )
+
+;; Install emacs-ycmd - the code completion system
+(use-package ycmd
+  :delight (ycmd-mode) (ycmd-eldoc-mode) (eldoc-mode)
+  :bind (("M-." . ycmd-goto)
+	 ("M-r" . ycmd-goto-references))
+  :bind (:map evil-normal-state-map
+	 ("M-." . ycmd-goto))
+  :config
+  (set-variable 'ycmd-server-command '("python2" "/Users/piotr/Programs/ycmd/ycmd/"))
+  (global-ycmd-mode)
+  
+  ;; Disable inserting completion arguments
+  (setq-default company-ycmd-insert-arguments nil)
+  
+  ;; Enable Company support
+  (use-package company-ycmd
+    :after company
+    :config (company-ycmd-setup))
+  
+  ;; Enable Flycheck support
+  (use-package flycheck-ycmd
+    :after flycheck
+    :config (flycheck-ycmd-setup))
+
+  ;; Enable eldoc support
+  (require 'ycmd-eldoc)
+  (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup)
+  :demand
+)
+
 
 ;;;; UTILITIES
 
@@ -558,7 +586,7 @@
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (company-anaconda org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
+    (ycmd-eldoc company-anaconda org flycheck-rtags py-autopep8 pyvenv evil-magit yasnippet-snippets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
