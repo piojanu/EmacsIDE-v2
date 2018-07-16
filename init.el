@@ -316,6 +316,24 @@
 )
 
 
+;;;; PROGRAMMING
+
+;; Install dumb-jump - multi-language jump to definition and references
+(use-package dumb-jump
+  :bind (("M-." . dumb-jump-go)
+         ("M-*" . dumb-jump-back)
+         ("M-," . dumb-jump-quick-look))
+  :bind (:map evil-normal-state-map
+	 ("M-." . dumb-jump-go))
+  :after ivy evil
+  :config
+  ;; Enable ivy support
+  (setq dumb-jump-selector 'ivy)
+  ;; Enable silver searcher support, it will still use git-grep if it's a git project
+  (setq dumb-jump-prefer-searcher 'ag)
+  :demand
+)
+
 ;;;; UTILITIES
 
 ;; Install ace-window
