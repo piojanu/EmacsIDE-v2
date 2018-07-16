@@ -187,20 +187,6 @@
 )
 
 
-;;; C
-
-;; CUDA support
-(use-package cuda-mode
-  :mode "\\.cu\\'"
-  :hook
-  (cuda-mode . (lambda () (run-hooks 'prog-mode-hook))) ;; Make cuda-mode a prog-mode
-  :config
-  (setq-default c-basic-offset 4
-                tab-width 4
-                indent-tabs-mode nil)
-)
-
-
 ;;;; GIT
 
 ;; Install Magit
@@ -287,32 +273,16 @@
 
 ;;;; PYTHON
 
-(use-package anaconda-mode
-  :delight eldoc-mode
-  :hook ((python-mode . anaconda-mode)
-	 (python-mode . anaconda-eldoc-mode))
-  :defer t
-  :bind (:map evil-normal-state-map
-	 ("M-." . anaconda-mode-find-definitions))
-  :config
-  ;; Anaconda backend for company completion
-  (use-package company-anaconda
-    :after company
-    :config
-    (add-hook 'anaconda-mode-hook (lambda ()
-	(add-to-list (make-local-variable 'company-backends)
-	   '(company-anaconda company-yasnippet company-files company-dabbrev))))
-  )
-  
-  ;; Virtualenv support in emacs
-  (use-package pyvenv
-    :commands pyvenv-workon
-    :init (defalias 'workon 'pyvenv-workon))
+;; Virtualenv support in emacs
+(use-package pyvenv
+  :commands pyvenv-workon
+  :init (defalias 'workon 'pyvenv-workon)
+)
 
-  ;; Auto Python PEP8 formatting
-  (use-package py-autopep8
-    :hook (python-mode . py-autopep8-enable-on-save)
-    :config (setq py-autopep8-options '("--max-line-length=100")))
+;; Auto Python PEP8 formatting
+(use-package py-autopep8
+  :hook (python-mode . py-autopep8-enable-on-save)
+  :config (setq py-autopep8-options '("--max-line-length=100"))
 )
 
 
