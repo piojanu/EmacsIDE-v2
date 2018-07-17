@@ -487,18 +487,19 @@
 (use-package counsel ;; it'll install ivy and swiper as dependencies
   :delight (ivy-mode) (counsel-mode)
   :bind
-  ("C-c r" . ivy-resume)
   ("C-s" . swiper)
   ("C-c s s" . counsel-ag)
   ("C-c s g" . counsel-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
+  ("C-c C-r" . ivy-resume)
   ("C-x C-r" . counsel-recentf)
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq enable-recursive-minibuffers t)
+  (setq ivy-on-del-error-function nil)
   (counsel-mode)
 
   ;; Remove '^' from the beginning of input match
