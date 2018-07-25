@@ -109,6 +109,10 @@
     (setq mac-option-modifier nil))))
 
 
+;; Make TRAMP quieter
+(setq tramp-verbose 2)
+
+
 ;;;; MELPA & USE-PACKAGE
 
 ;; Set up MELPA repository
@@ -311,6 +315,10 @@
   :config
   (set-variable 'ycmd-server-command '("python2" "/Users/piotr/Programs/ycmd/ycmd/"))
   (global-ycmd-mode)
+
+  ;; Make emacs-ycmd quieter
+  (setq-default url-show-status nil)
+  (setq-default request-message-level -1)
   
   ;; Disable inserting completion arguments
   (setq-default company-ycmd-insert-arguments nil)
@@ -318,7 +326,10 @@
   ;; Enable Company support
   (use-package company-ycmd
     :after company
-    :config (company-ycmd-setup))
+    :config
+    (add-to-list 'company-backends
+		 '(company-ycmd company-yasnippet company-files company-dabbrev))
+  )
   
   ;; Enable Flycheck support
   (use-package flycheck-ycmd
@@ -492,7 +503,7 @@
   ("C-c s g" . counsel-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
-  ("C-c C-r" . ivy-resume)
+  ("C-c r" . ivy-resume)
   ("C-x C-r" . counsel-recentf)
   :config
   (ivy-mode 1)
@@ -584,6 +595,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-backends
+   (quote
+    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+		  (company-dabbrev-code company-gtags company-etags company-keywords)
+		  company-oddmuse company-dabbrev)))
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
