@@ -20,8 +20,9 @@
 (setq inhibit-startup-screen t)
 
 
-;; Make emacs frame maximized at startup
+;; Make emacs frame maximized at startup and add shortcut for full-screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(global-set-key (kbd "C-M-f") 'toggle-frame-fullscreen)
 
 
 ;; Add line numbering
@@ -320,11 +321,7 @@
 
 ;; Install dumb-jump - multi-language jump to definition and references
 (use-package dumb-jump
-  :bind (("M-." . dumb-jump-go)
-         ("M-*" . dumb-jump-back)
-         ("M-," . dumb-jump-quick-look))
-  :bind (:map evil-normal-state-map
-	 ("M-." . dumb-jump-go))
+  :bind ("M-," . dumb-jump-go)
   :after ivy evil
   :config
   ;; Enable ivy support
@@ -494,7 +491,7 @@
   ("C-c s g" . counsel-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
-  ("C-c C-r" . ivy-resume)
+  ("C-c r" . ivy-resume)
   ("C-x C-r" . counsel-recentf)
   :config
   (ivy-mode 1)
