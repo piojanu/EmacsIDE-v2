@@ -485,13 +485,14 @@
 ;; Install Ivy, minibuffer completion
 (use-package counsel ;; it'll install ivy and swiper as dependencies
   :delight (ivy-mode) (counsel-mode)
-  :bind
+  :bind*
   ("C-s" . swiper)
   ("C-c s s" . counsel-ag)
   ("C-c s g" . counsel-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
   ("C-c r" . ivy-resume)
+  ("C-c C-f" . counsel-projectile-find-file)
   ("C-x C-r" . counsel-recentf)
   :config
   (ivy-mode 1)
