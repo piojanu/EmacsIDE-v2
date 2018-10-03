@@ -434,7 +434,8 @@
     ;; Leave insert-state after save
     ("C-x C-s" . (lambda () (interactive) (save-buffer) (evil-normal-state))))
   (:map evil-motion-state-map
-    ("C-u" . evil-scroll-up))
+    ("C-u" . scroll-down-command)
+    ("C-d" . scroll-up-command))
   :config
   ;; Remove all keybindings from insert-state keymap, so I can use emacs ones
   (setcdr evil-insert-state-map nil)
