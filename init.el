@@ -321,7 +321,9 @@
 
 ;; Install dumb-jump - multi-language jump to definition and references
 (use-package dumb-jump
-  :bind ("M-," . dumb-jump-go)
+  :bind
+  ("C-M-," . dumb-jump-go-prompt)
+  ("C-M-." . dumb-jump-go)
   :after ivy evil
   :config
   ;; Enable ivy support
