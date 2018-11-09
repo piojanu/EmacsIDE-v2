@@ -544,9 +544,9 @@
   :delight
   :pin melpa
   :hook (prog-mode . semantic-mode)
-  :defer t
   :init
   (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  (require 'stickyfunc-enhance)
 )
 
 
