@@ -302,7 +302,7 @@
     :config
     (add-hook 'anaconda-mode-hook (lambda ()
 	(add-to-list (make-local-variable 'company-backends)
-	   '(company-anaconda company-yasnippet company-files company-dabbrev))))
+	   '(company-anaconda company-files company-dabbrev :separate))))
   )
   
   ;; Virtualenv support in emacs
