@@ -188,9 +188,8 @@
 )
 
 
-;;; C
+;;;; C
 
-;; CUDA support
 (use-package cuda-mode
   :mode "\\.cu\\'"
   :hook
@@ -301,8 +300,8 @@
     :after company
     :config
     (add-hook 'anaconda-mode-hook (lambda ()
-	(add-to-list (make-local-variable 'company-backends)
-	   '(company-anaconda company-files company-dabbrev :separate))))
+	  (add-to-list (make-local-variable 'company-backends)
+	    '(company-anaconda company-files company-dabbrev :separate))))
   )
   
   ;; Virtualenv support in emacs
@@ -335,7 +334,6 @@
 
 ;;;; UTILITIES
 
-;; Install ace-window
 (use-package ace-window
   :commands ace-window
   :bind
@@ -345,7 +343,6 @@
 )
 
 
-;; Install Avy - jumping to visible text using a char-based decision tree
 (use-package avy
   :commands
   (avy-goto-char-2 avy-goto-char-timer ivy-avy)
@@ -355,7 +352,6 @@
 )
 
 
-;; Install Company
 (use-package company
   :delight
   :bind
@@ -428,7 +424,6 @@
 )
 
 
-;; Install Evil
 (use-package evil
   :delight undo-tree-mode
   :bind
@@ -448,7 +443,6 @@
 )
 
 
-;; Install Evil tutor
 (use-package evil-tutor
   :after evil
   :commands evil-tutor-start
@@ -463,7 +457,6 @@
 )
 
 
-;; Intall expand-region, for selection region by semantic units
 (use-package expand-region
   :commands
   er/expand-region
@@ -472,7 +465,6 @@
 )
 
 
-;; Install Flycheck, replacement for the older Flymake
 (use-package flycheck
   :delight
   :config
@@ -485,7 +477,6 @@
 )
 
 
-;; Install Ivy, minibuffer completion
 (use-package counsel ;; it'll install ivy and swiper as dependencies
   :delight (ivy-mode) (counsel-mode)
   :bind*
@@ -523,7 +514,6 @@
 )
 
 
-;; Install Projectile
 (use-package projectile
   :delight
   :config
@@ -531,7 +521,6 @@
 )
 
 
-;; Install Rainbow delimiters
 (use-package rainbow-delimiters
   :delight
   :hook (prog-mode . rainbow-delimiters-mode)
@@ -539,7 +528,6 @@
 )
 
 
-;; Install Stickyfunc Enhance
 (use-package stickyfunc-enhance
   :delight
   :pin melpa
@@ -550,7 +538,6 @@
 )
 
 
-;; Install which-key, propose keybind after entered prefix
 (use-package which-key
   :delight
   :after evil ;; for integration with Evil
@@ -560,7 +547,6 @@
 )
 
 
-;; Install yasnippet and yasnippet-snippets
 (use-package yasnippet
   :delight yas-minor-mode
   :hook (prog-mode . yas-minor-mode)
