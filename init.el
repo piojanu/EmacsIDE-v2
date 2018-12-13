@@ -201,9 +201,24 @@
 )
 
 
+(use-package cc-mode
+  :init
+  (add-hook 'c-mode-common-hook (lambda ()
+    (add-to-list (make-local-variable 'company-backends)
+	  '(company-semantic company-dabbrev-code :separate))))
+  :config
+  (setq-default c-basic-offset 4
+                tab-width 4
+                indent-tabs-mode nil)
+)
+
+
+(use-package cmake-mode
+  :load-path "~/.emacs.d/elisp")
+
+
 ;;;; GIT
 
-;; Install Magit
 (use-package magit
   :commands magit-status
   :bind
