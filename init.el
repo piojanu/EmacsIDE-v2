@@ -215,6 +215,22 @@
 )
 
 
+;;;; JAVA SCRIPT
+
+(add-hook 'js-mode-hook
+  (function (lambda ()
+    (setq indent-tabs-mode nil
+      js-indent-level 2))))
+
+
+(use-package typescript-mode
+  :mode "\\.ts\\'"
+  :hook
+  (typescript-mode . (lambda () (run-hooks 'prog-mode-hook))) ;; Make typescript-mode a prog-mode
+)
+  
+
+
 ;;;; MARKDOWN
 
 (use-package markdown-mode
