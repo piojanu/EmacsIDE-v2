@@ -188,6 +188,19 @@
 )
 
 
+;; Add Nyan cat to your mode-line! :D
+(use-package nyan-mode
+  :hook ((prog-mode . nyan-mode)
+         (text-mode . nyan-mode))
+  :config
+  (setq mode-line-format
+    (list
+      '(:eval (list (nyan-create)))
+      ))
+  (nyan-start-animation)
+)
+
+
 ;;;; C
 
 (use-package cuda-mode
@@ -249,7 +262,8 @@
 
 (add-hook 'latex-mode-hook
   (function (lambda ()
-    (run-hooks 'prog-mode-hook))))
+    (run-hooks 'prog-mode-hook)
+    (whitespace-mode -1))))
 
 
 ;;;; MARKDOWN
@@ -325,7 +339,7 @@
 ;;;; PYTHON
 
 (use-package anaconda-mode
-  :delight eldoc-mode
+  :delight (eldoc-mode) (anaconda-mode)
   :hook ((python-mode . anaconda-mode)
 	 (python-mode . anaconda-eldoc-mode))
   :defer t
