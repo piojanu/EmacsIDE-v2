@@ -343,8 +343,10 @@
   :hook ((python-mode . anaconda-mode)
 	 (python-mode . anaconda-eldoc-mode))
   :defer t
-  :bind (:map evil-normal-state-map
-	 ("M-." . anaconda-mode-find-definitions))
+  :bind
+  (:map evil-normal-state-map ("M-," . anaconda-mode-find-definitions))
+  ("M-," . anaconda-mode-find-definitions)
+  ("C-M-," . anaconda-mode-find-assignments)
   :config
   ;; Anaconda backend for company completion
   (use-package company-anaconda
@@ -372,8 +374,9 @@
 ;; Install dumb-jump - multi-language jump to definition and references
 (use-package dumb-jump
   :bind
-  ("C-M-," . dumb-jump-go-prompt)
-  ("C-M-." . dumb-jump-go)
+  (:map evil-normal-state-map ("M-." . dumb-jump-go))
+  ("M-." . dumb-jump-go)
+  ("C-M-." . dumb-jump-go-prompt)
   :after ivy evil
   :config
   ;; Enable ivy support
@@ -484,6 +487,7 @@
   (:map evil-motion-state-map
     ("C-u" . scroll-down-command)
     ("C-d" . scroll-up-command))
+  ("C-M-o" . evil-jump-forward)
   :config
   ;; Remove all keybindings from insert-state keymap, so I can use emacs ones
   (setcdr evil-insert-state-map nil)
