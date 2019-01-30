@@ -188,19 +188,6 @@
 )
 
 
-;; Add Nyan cat to your mode-line! :D
-(use-package nyan-mode
-  :hook ((prog-mode . nyan-mode)
-         (text-mode . nyan-mode))
-  :config
-  (setq mode-line-format
-    (list
-      '(:eval (list (nyan-create)))
-      ))
-  (nyan-start-animation)
-)
-
-
 ;;;; C
 
 (use-package cuda-mode
