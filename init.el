@@ -273,6 +273,7 @@
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :bind ("C-c a" . org-agenda)
+  :bind ("C-c l" . org-store-link)
   :bind* ("C-'" . avy-goto-char-2)
   :config
   ;; Set fold symbol to be arrow pointing right and then curving downwards
@@ -360,10 +361,12 @@
 
 ;; Install dumb-jump - multi-language jump to definition and references
 (use-package dumb-jump
-  :bind
+  :bind*
   (:map evil-normal-state-map ("M-." . dumb-jump-go))
+  (:map evil-normal-state-map ("M-*" . dumb-jump-back))
   ("M-." . dumb-jump-go)
   ("C-M-." . dumb-jump-go-prompt)
+  ("M-*" . dumb-jump-back)
   :after ivy evil
   :config
   ;; Enable ivy support
