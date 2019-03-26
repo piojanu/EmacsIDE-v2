@@ -52,10 +52,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 
-;; Enables moving to other windows with Shift-<arrow key>
-(windmove-default-keybindings)
-
-
 ;; Wrap at word boundaries
 (setq-default word-wrap t)
 
