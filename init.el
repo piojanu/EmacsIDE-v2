@@ -289,18 +289,14 @@
   ;; Wrap lines
   (add-hook 'org-mode-hook #'toggle-truncate-lines)
 
-  ;; org-todo-list for current file
-  (defun org-todo-list-current-file (&optional arg)
-  "Like `org-todo-list', but using only the current buffer's file."
-  (interactive "P")
-  (let ((org-agenda-files (list (buffer-file-name (current-buffer)))))
-    (if (null (car org-agenda-files))
-        (error "%s is not visiting a file" (buffer-name (current-buffer)))
-      (org-todo-list arg))))
-
   ;; Add workflow states
   (setq org-todo-keywords
 	'((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
+  ;; Add success/failure tags
+  (setq org-tag-alist
+        '(("success" . ?s)))
+  (setq org-tags-column 0)
 
   ;; Allows to embed a TODO within text without treating it as an outline heading
   (require 'org-inlinetask)
