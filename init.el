@@ -154,33 +154,28 @@
 ;;;; APPEARANCE
 
 ;; Load Dracula/Tomorrow Theme...
-(use-package color-theme-tomorrow
+(use-package doom-themes
+  :ensure t
   :load-path "~/.emacs.d/themes"
   :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  
   (if (display-graphic-p)
-    (load-theme 'dracula t)                   ;; ...for GUI
+    (progn
+      (load-theme 'doom-one t)                ;; ...for GUI
+      (doom-themes-org-config))
     (load-theme 'tomorrow-night-eighties t))  ;; ...for CMD
 )
 
 
-;; Change mode-line theme to that from Spacemacs
-(use-package spaceline-config
-  :if window-system
-  :ensure spaceline
+;; Change mode-line theme 
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
   :config
-  (spaceline-spacemacs-theme)
-  (setq ns-use-srgb-colorspace nil)
-  (cond ((string-equal system-type "darwin") ;; Mac OS X
-	 (progn (setq powerline-height 20))))
-  (setq powerline-default-separator 'wave)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (set-face-attribute 
-   'spaceline-evil-normal nil :background "#F181C0" :foreground "black")
-  (set-face-attribute 
-   'spaceline-evil-insert nil :background "#FFBC74" :foreground "black")
-  (set-face-attribute 
-   'spaceline-evil-visual nil :background "#86CBD3" :foreground "black")
-  (spaceline-compile)
+  (setq find-file-visit-truename t)
+  (setq doom-modeline-buffer-modification-icon nil)
 )
 
 
