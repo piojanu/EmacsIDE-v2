@@ -357,6 +357,20 @@ There are two things you can do about this warning:
   
   ;; Enable company Tab and Go feature
   (company-tng-configure-default)
+    
+  ;; Company and yasnippet integration
+  (defun company-yasnippet-or-completion ()
+    "Solve company yasnippet conflicts."
+    (interactive)
+    (let ((yas-fallback-behavior
+	   (apply 'company-complete-common nil)))
+      (yas-expand)))
+  (add-hook 'company-mode-hook
+   (lambda ()
+     (substitute-key-definition
+      'company-complete-common
+      'company-yasnippet-or-completion
+      company-active-map)))
 
   ;; set default `company-backends'
   (setq company-backends
@@ -378,6 +392,17 @@ There are two things you can do about this warning:
     (setq company-quickhelp-delay nil)
   )
   :demand
+)
+
+;; Templates expansions
+(use-package yasnippet
+  :delight yas-minor-mode
+  :hook (prog-mode . yas-minor-mode)
+  :defer t
+  :config
+  (use-package yasnippet-snippets
+    :pin melpa)
+  (yas-reload-all)
 )
 
 ;; Show function declaration on the top of the buffer
