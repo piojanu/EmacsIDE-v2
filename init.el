@@ -25,9 +25,9 @@
 (setq linum-format "%4d ");; \u2502 ")
 (add-hook 'prog-mode-hook 'linum-mode)
 
-;; Highlight lines that exceed 100 characters
+;; Highlight lines that exceed 119 characters (width of GitHub code-review window)
 (require 'whitespace)
-(setq whitespace-line-column 100) ;; limit line length
+(setq whitespace-line-column 119) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
