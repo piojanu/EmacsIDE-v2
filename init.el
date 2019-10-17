@@ -405,6 +405,18 @@ There are two things you can do about this warning:
   (yas-reload-all)
 )
 
+;; Syntax checking
+(use-package flycheck
+  :delight
+  :config
+  (global-flycheck-mode)
+
+  ;; Disable error indication on fringe
+  (setq flycheck-indication-mode nil)
+  ;; Check after save
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)) 
+)
+
 ;; Show function declaration on the top of the buffer
 (use-package stickyfunc-enhance
   :delight
