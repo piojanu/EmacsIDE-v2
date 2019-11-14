@@ -213,6 +213,7 @@ There are two things you can do about this warning:
   ("C-c r" . ivy-resume)
   ("C-c C-f" . counsel-projectile-find-file)
   ("C-x C-r" . counsel-recentf)
+  ("C-c p" . counsel-projectile-switch-project)
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
@@ -282,6 +283,21 @@ There are two things you can do about this warning:
 )
 
 
+;;;; ENVIRONMENTS
+;;;;--------------
+
+
+;; Emacs library for working with conda environments
+(use-package conda
+  :config
+  ;; if you want interactive shell support, include:
+  (conda-env-initialize-interactive-shells)
+  ;; if you want eshell support, include:
+  (conda-env-initialize-eshell)
+  ;; if you want auto-activation (see below for details), include:
+  (conda-env-autoactivate-mode nil))
+
+
 ;;;; CODING
 ;;;;--------
 
@@ -336,6 +352,13 @@ There are two things you can do about this warning:
   ;; Enable company globally
   (global-company-mode)
 
+  ;; company-jedi wires up jedi to be a backend for the company
+  (use-package company-jedi
+    :ensure t
+    :pin melpa
+    :bind
+    ("C-M-h" . jedi:show-doc))
+
   ;; Customise company
   (setq company-tooltip-limit 10)
   (setq company-idle-delay 0.2)
@@ -374,11 +397,12 @@ There are two things you can do about this warning:
 
   ;; set default `company-backends'
   (setq company-backends
-        '((company-dabbrev-code
+        '((company-jedi
+           company-files)
+          (company-dabbrev-code
            company-files          ; files & directory
            company-keywords       ; keywords
-           company-capf
-           )
+           company-capf)
           (company-abbrev company-dabbrev)))
   
   ;; Install company quickhelp
@@ -495,3 +519,18 @@ There are two things you can do about this warning:
   nil)
 
 ;;; new-init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(conda-anaconda-home "/Users/piotr/anaconda3")
+ '(package-selected-packages
+   (quote
+    (org-bullets company-jedi yasnippet-snippets which-key use-package typescript-mode stickyfunc-enhance spaceline rainbow-delimiters pyvenv py-autopep8 markdown-mode flycheck expand-region exec-path-from-shell evil-tutor evil-magit dumb-jump drag-stuff doom-themes doom-modeline delight cuda-mode counsel-projectile company-quickhelp company-anaconda ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
