@@ -441,6 +441,11 @@ There are two things you can do about this warning:
   (setq flycheck-check-syntax-automatically '(mode-enabled save)) 
 )
 
+;; Auto Python PEP8 formatting
+(use-package py-autopep8
+  :hook (python-mode . py-autopep8-enable-on-save)
+  :config (setq py-autopep8-options '("--max-line-length=119")))
+
 ;; Show function declaration on the top of the buffer
 (use-package stickyfunc-enhance
   :delight
