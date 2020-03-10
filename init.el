@@ -25,9 +25,9 @@
 (setq linum-format "%4d ");; \u2502 ")
 (add-hook 'prog-mode-hook 'linum-mode)
 
-;; Highlight lines that exceed 119 characters (width of GitHub code-review window)
+;; Highlight lines that exceed 80 characters
 (require 'whitespace)
-(setq whitespace-line-column 119) ;; limit line length
+(setq whitespace-line-column 80) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
@@ -444,7 +444,7 @@ There are two things you can do about this warning:
 ;; Auto Python PEP8 formatting
 (use-package py-autopep8
   :hook (python-mode . py-autopep8-enable-on-save)
-  :config (setq py-autopep8-options '("--max-line-length=119")))
+  :config (setq py-autopep8-options '("--max-line-length=80" "--ignore=E101,E111")))
 
 ;; Show function declaration on the top of the buffer
 (use-package stickyfunc-enhance
