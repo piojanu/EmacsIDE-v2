@@ -459,6 +459,10 @@ There are two things you can do about this warning:
   :bind ("C-c l" . org-store-link)
   :bind* ("C-'" . avy-goto-char-2)
   :config
+  ;; Load languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((python . t)))
+
   ;; Set fold symbol to be arrow pointing right and then curving downwards
   (setq org-ellipsis
     (if (char-displayable-p ?\u2935) " \u2935"
