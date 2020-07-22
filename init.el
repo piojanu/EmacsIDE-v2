@@ -438,6 +438,10 @@ There are two things you can do about this warning:
   :hook (prog-mode . semantic-mode)
   :init
   (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  ;; Fixes "Error running timer semantic-idle-scheduler-function:
+  ;;       (error "Unmatched Text during Lexical Analysis")"
+  ;; Source: https://github.com/abo-abo/lispy/issues/473
+  (advice-add 'semantic-idle-scheduler-function :around #'ignore)
   (require 'stickyfunc-enhance)
 )
 
