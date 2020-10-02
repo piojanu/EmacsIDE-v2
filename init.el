@@ -206,8 +206,8 @@ There are two things you can do about this warning:
   :delight (ivy-mode) (counsel-mode)
   :bind*
   ("C-s" . swiper)
-  ("C-c s s" . counsel-ag)
-  ("C-c s g" . counsel-grep)
+  ("C-c s s" . counsel-projectile-ag)
+  ("C-c s g" . counsel-projectile-grep)
   ("C-c i" . counsel-imenu)
   ("C-c y" . counsel-yank-pop)
   ("C-c r" . ivy-resume)
