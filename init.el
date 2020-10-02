@@ -451,10 +451,22 @@ There are two things you can do about this warning:
 
 
 ;; Add LaTeX support
-(add-hook 'latex-mode-hook
-  (function (lambda ()
-    (run-hooks 'prog-mode-hook)
-    (whitespace-mode -1))))
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config
+  ;; Switch AucTeX to pdf mode
+  ;; Source: https://superuser.com/questions/142450/getting-emacs-to-use-pdflatex
+  (setq TeX-PDF-mode t)
+
+  ;; Parse BibTeX from other file.
+  ;; Source: https://emacs.stackexchange.com/questions/13426/auctex-doesnt-run-bibtex
+  (setq TeX-parse-self t) ; Enable parse on load.
+  (setq TeX-auto-save t) ; Enable parse on save.
+
+  ;; Set the top level document default name.
+  (setq-default TeX-master "main")
+)
 
 ;; Allows for taking extended notes in Org-mode
 (use-package org
@@ -525,7 +537,7 @@ There are two things you can do about this warning:
  '(conda-anaconda-home "/Users/piotr/anaconda3")
  '(package-selected-packages
    (quote
-    (org-bullets company-jedi yasnippet-snippets which-key use-package typescript-mode stickyfunc-enhance spaceline rainbow-delimiters pyvenv py-autopep8 markdown-mode flycheck expand-region exec-path-from-shell evil-tutor evil-magit dumb-jump drag-stuff doom-themes doom-modeline delight cuda-mode counsel-projectile company-quickhelp company-anaconda ace-window))))
+    (auctex org-bullets company-jedi yasnippet-snippets which-key use-package typescript-mode stickyfunc-enhance spaceline rainbow-delimiters pyvenv py-autopep8 markdown-mode flycheck expand-region exec-path-from-shell evil-tutor evil-magit dumb-jump drag-stuff doom-themes doom-modeline delight cuda-mode counsel-projectile company-quickhelp company-anaconda ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
